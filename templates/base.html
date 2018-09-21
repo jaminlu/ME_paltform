@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ManageEngine | 控制面板{% endblock %}</title>
+
+    {% include 'head_css.html' %}{% block headcss %}{% endblock %}
+
+    <!-- 引入css -->
+    <link href="/static/app/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="/static/app/bootstrap-editable/js/bootstrap-editable.js"></script>
+
+</head>
+
+<body>
+    <div  id="wrapper">
+
+        <!--zuo ce bian lan kaishi -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                {% if user.headimg %}
+                                    <img alt="image" class="img-circle" src="/{{ user.headimg }}" width="40" height="40"/>
+                                {% else %}
+                                    <img alt="image" class="img-circle" src="/static/images/touxiang/tou.gif" width="40" height="40"/>
+                                {% endif %}
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">{{ user.nickname }}</strong>
+                                    </span>
+                                    <span class="text-muted text-xs block">
+                                        {% if user.is_superuser %}
+                                            管理员
+                                        {% else %}
+                                            普通用户
+                                        {% endif %}
+                                        <b class="caret"></b>
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animate fadeInRight m-t-xs">
+                                <li><a href={% url 'index' %}>profile</a></li>
+                                <li><a href="">change password</li>
+                                {% if user.is_superuser %}
+                                    <li><a href={% url 'user_list' %}>user management</a></li>
+                                    <li><a href="">group management</a></li>
+                                {% endif %}
+                            </ul>
+
+                        </div>
+                        <div class="logo-element">
+                            {% if user.headimg %}
+                                <img alt="image" class="img-circle" src="/{{ user.headimg }}" width="40" height="40"/>
+                            {% else %}
+                                <img alt="image" class="img-circle" src="/static/images/touxiang/tou.gif" width="40" height="40"/>
+                            {% endif %}
+                        </div>
+                    </li>
+                    <li>
+                        <a><i class="fa fa-home"></i> <span class="nav-label">首页</span></a>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- zuo ce bian lan jieshu -->
+
+
+        <div id="page-wrapper" class="gray-bg">
+            <!-- top kaishi-->
+            <div class="row border-bottom">
+                {% block navbar %}
+                    <nav class="navbar navbar-static-top white" role="navigation" style="margin-bottom: 0">
+                {% endblock %}
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i>
+                    </a>
+                    <form role="search" class="navbar-form-custom" action={% url 'index' %}>
+                       <div class="form-group">
+                           <input type="text" placeholder="search" class="form-control" name="top-search" id="top-search">
+                       </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">welcom to ME paltform</span>
+                        </li>
+
+
+                        <!-- yi ge tu biao -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i><span class="label label-warning">0</span>
+                            </a>
+                            <!--xia la caidan  -->
+                            <ul class="dropdown-menu dropdown-messages">
+
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a href="#" class="pull-left"><img alt="image" class="img-circle" src="img/a7.jpg"></a>
+                                        <div>
+                                            <small class="pull-right">46h ago</small>
+                                            <strong>Mike Loreipsum</strong>started followimg<strong>Monica Smith</strong> <br>
+                                            <small class="text-muted">3 days ago</small>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="dropdown-messages-box">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a4.jpg">
+                                        </a>
+                                        <div>
+                                            <small class="pull-right text-navy">5 hours ago</small>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!--xia la caidan end-->
+                        </li>
+                        <!-- yi ge tu biao  end--->
+
+                        <!-- second icon_begin-->
+                        <li class="dropdown" id="alert">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell"></i><span class="label label-primary" id="count-info-num">3</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a href="#">
+                                        <div><i class="fa fa-envelope fa-fw"></i>You have 16 messages
+                                            <span class="pull-right text-muted small"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- second icon end -->
+
+                        <li>
+                            <a href={% url 'logout' %}>
+                                <i class="fa fa-sign-out"></i> 登 出
+                            </a>
+                        </li>
+
+                </ul>
+
+            </div>
+            <!-- top  end-->
+
+
+            {% block breadcrumb %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+            <div class="footer">
+                <div class="pull-right">
+                    版本号: <strong>0.1.0</strong>(2018.2.6)
+                </div>
+                <div>
+                    <strong>Copyright</strong> ME platform &copy; 2018
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mainly scripts -->
+    {% include 'foot_js.html' %}
+    {% block footjs %}
+    {% endblock %}
+
+
+</body>
+</html>
