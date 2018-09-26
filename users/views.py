@@ -2,10 +2,13 @@
 from django.contrib import auth
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render, render_to_response
-from users.forms import LoginForm, AddUserForm
+from users.forms import LoginForm, ProfileForm, UserForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from ManageEngine.api.app_func import alert,admin_required
+from django.db import transaction
+from users.models import Profile
+from django.contrib import messages
 # Create your views here.
 import sys
 
@@ -58,23 +61,39 @@ def user_list(request):
     return render(request, 'users/users_list.html', locals())
 
 
-@admin_required()
-def user_add(request):
-    if request.method == 'POST':
-        form = AddUserForm(request.POST)
-        print('post')
-        if form.is_valid():
-            form.save()
-            the_user = User.objects.get(username=request.POST.get('username'))
-            the_user.set_password(request.POST.get('password'))
-            the_user.save()
+def load_profile(user):
+    try:
+        return user.profile
+    except:
+        profile = Profile.objects.create(user=user)
+        return profile
 
-            alert(request, u'user %d added' % the_user.username)
-            print('add')
-            return HttpResponseRedirect('/user_add')
+
+@admin_required()
+@transaction.atomic
+def user_update(request):
+    profile=load_profile(request.user)
+    print('enter')
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)  #print the user of operate
+        print(request.user)
+        print("================")
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        print(user_form)
+        print('11111')
+        print(profile_form)
+        if user_form.is_valid() and profile_form.is_valid():
+            print("write")
+            user_form.save()
+            profile_form.save()
+            messages.success(request, ('Your profile was successfully updated!'))
+            #alert(request, u'user %d added' % the_user.username)
+            return HttpResponseRedirect('/users/user_list')
         else:
             print('ooo')
-            form = AddUserForm()
-    return render(request, 'users/user_add.html', locals())
-
+            user_form = UserForm(instance=request.user)
+            profile_form = ProfileForm(instance=request.user.profile)
+        return render(request, 'users/user_update.html', {'user_form': user_form, 'profile_form': profile_form})
+    else:
+        return render(request, 'users/user_update.html',locals())
 
