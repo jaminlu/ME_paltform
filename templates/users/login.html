@@ -32,7 +32,7 @@
             <p>这是一个非常有趣的平台,在这里你的工作将变得非常简单.
             </p>
             <strong>请登录</strong>
-            <form class="m-t" role="form"  action={% url 'login' %} method="POST">
+            <form class="m-t" role="form"  action="login.html" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.username }}
@@ -41,6 +41,7 @@
                     {{ form.password }}
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                <a href="/register.html">Register</a>
 
                 <a><small>忘记密码?</small></a>
             </form>

@@ -10,8 +10,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-
-
+'''
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=255, blank=True, null=True)
@@ -26,3 +25,17 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+'''
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    dep = models.CharField('department', max_length=128, blank=True)
+
+    telephone = models.CharField('Telephone', max_length=50, blank=True)
+    mod_date = models.DateTimeField('Last modified', auto_now=True)
+
+    class Meta:
+        verbose_name = 'User Profile'
+
+    def __str__(self):
+        return self.user.__str__()

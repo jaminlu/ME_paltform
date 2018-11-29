@@ -1,64 +1,93 @@
 # -*- coding: utf-8 -*-
 from django.contrib import auth
-from django.contrib.auth.models import Group, User
-from django.shortcuts import render, render_to_response
-from users.forms import LoginForm, ProfileForm, UserForm
-from django.http import HttpResponseRedirect
+from django.contrib.auth.models import  User
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render,redirect
+from users.forms import LoginForm, UserForm,RegistrationForm
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
-from ManageEngine.api.app_func import alert,admin_required
+from ManageEngine.api.app_func import alert, admin_required
 from django.db import transaction
-from users.models import Profile
 from django.contrib import messages
+from users.models import UserProfile
 # Create your views here.
-import sys
 
 
-def login(request):
-    form = LoginForm()
-    error = ''
-    if request.user.is_authenticated:
-        print("authoried")
-        return HttpResponseRedirect("index/")
+@login_required(login_url="/login.html")
+def index(request):
+    '''
+    首页
+    :param request:
+    :return:
+    '''
+    print("start index")
+    return render(request, 'users/index.html', locals())
+
+
+def login_view(request):
     if request.method == 'GET':
+        form = LoginForm()
         print("ffff")
-        return render(request, 'users/login.html', {'form':form})
-    else:
-        username = request.POST.get('username')
-        print(username)
-        password = request.POST.get('password')
-        print("sss"+ password)
-        if username and password:
-            user = auth.authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    auth.login(request, user)
-                    print('login')
-                    return HttpResponseRedirect(request.session.get('pre_url', '/'))
-                else:
-                    error = u'user has not activate'
+        return render(request, 'users/login.html', {'form': form})
+    if request.method=="POST":
+        form = LoginForm(request.POST)
+        print(form)
+        if form.is_valid():
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            print(password)
+            user = authenticate(username=username, password= password)
+            print(user)
+            if user is not None and user.is_active:
+                login(request,user)
+                #print("request_session: %s" % request.session)
+                request.session['is_login']=True
+
+                login_ip = request.META['REMOTE_ADDR']
+                print("auth success")
+                return redirect('/index')
             else:
-                error = u'username or password may be wrong'
+                return render(request, 'users/login.html', {'form': form})
         else:
-            error = u'username or password may be wrong'
-    return render(request, 'users/login.html', {'form': form})
+            return render(request,'users/login.html', {'form': form})
 
 
-@login_required()
 def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect('/users/login')
+    request.session.clear()
+    return redirect('/login.html')
 
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password2']
+
+            user = User.objects.create_user(username=username, password=password, email=email)
+
+            user_profile = UserProfile(user=user)
+            user_profile.save()
+            return render(request,'users/login.html')
+
+    else:
+        form = RegistrationForm
+    return render(request, 'users/register.html',{'form':form})
 
 @login_required()
 def profile(request):
     username = request.user
-    print(username)
-    return render(request, 'hello.html',locals())
+    return render(request, 'hello.html', locals())
+
 
 @login_required()
 def user_list(request):
-    users = User.objects.filter(id__gt=0)
-    return render(request, 'users/users_list.html', locals())
+    users1 = User.objects.all()
+    print(users1)
+    users = User.objects.all().order_by('id')
+    print(users)
+    # phone = Profile.objects.filter(id__gt=0)
+    return render(request, 'users/users_list.html', {'users': users})
 
 
 def load_profile(user):
@@ -71,23 +100,24 @@ def load_profile(user):
 
 @admin_required()
 @transaction.atomic
-def user_update(request):
-    profile=load_profile(request.user)
+def user_update(request, id):
+    print(id)
+    user = User.objects.filter(id=id)
+    username = User.objects.get(id=id)
+    profile = load_profile(username)
     print('enter')
+    user_form = UserForm(request.POST, instance=username)  # print the user of operate
+    print(user_form)
+    profile_form = ProfileForm(request.POST, instance=profile)
+    print(profile_form)
     if request.method == 'POST':
-        user_form = UserForm(request.POST, instance=request.user)  #print the user of operate
-        print(request.user)
-        print("================")
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
         print(user_form)
-        print('11111')
         print(profile_form)
         if user_form.is_valid() and profile_form.is_valid():
-            print("write")
             user_form.save()
             profile_form.save()
             messages.success(request, ('Your profile was successfully updated!'))
-            #alert(request, u'user %d added' % the_user.username)
+            # alert(request, u'user %d added' % the_user.username)
             return HttpResponseRedirect('/users/user_list')
         else:
             print('ooo')
@@ -95,5 +125,7 @@ def user_update(request):
             profile_form = ProfileForm(instance=request.user.profile)
         return render(request, 'users/user_update.html', {'user_form': user_form, 'profile_form': profile_form})
     else:
-        return render(request, 'users/user_update.html',locals())
+        return render(request, 'users/user_update.html', locals())
 
+def perm_deny(request):
+    return render(request, 'perm_deny.html', locals())
