@@ -9,10 +9,10 @@
                 <a href={% url 'index' %}>首页</a>
             </li>
             <li>
-            <a>Users</a>
+            <a href={% url 'user_list' %}>Users</a>
             </li>
             <li class="active">
-            <strong>Add User</strong>
+            <strong>Edit User</strong>
             </li>
         </ol>
     </div>
@@ -26,12 +26,12 @@
         <div class="col-md-8 col-md-offset-2">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>添加用户</h5>
+                            <h5>添加字段</h5>
                         </div>
 
                         <!--add user form -->
                         <div>
-                            <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action={% url 'user_update' %} xmlns="http://www.w3.org/1999/html">
+                            <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="/users/user_update/{{ id }}/" xmlns="http://www.w3.org/1999/html">
                             {% csrf_token %}
                             <div class="ibox-content profile-content">
                             <div class="row">

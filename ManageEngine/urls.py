@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
-from users.views import login_view, index,logout, register
+from users.views import login_view, index,logout, register, profile, changepwd,profile_update
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
@@ -27,4 +27,7 @@ urlpatterns = [
     path('index', index, name="index"),
     path('logout.html',logout, name="logout"),
     path('register.html', register, name="register"),
+    path('profile.html', profile, name='profile'),
+    path('profile_update.html',profile_update, name='profile_update'),
+    path('changepwd.html', changepwd, name='changepwd'),
 ]

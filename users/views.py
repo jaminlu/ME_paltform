@@ -2,8 +2,8 @@
 from django.contrib import auth
 from django.contrib.auth.models import  User
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render,redirect
-from users.forms import LoginForm, UserForm,RegistrationForm
+from django.shortcuts import render,redirect,get_object_or_404
+from users.forms import LoginForm, UserForm,RegistrationForm,ProfieForm,ChangePwdForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from ManageEngine.api.app_func import alert, admin_required
@@ -27,7 +27,7 @@ def index(request):
 def login_view(request):
     if request.method == 'GET':
         form = LoginForm()
-        print("ffff")
+        print("login_view get")
         return render(request, 'users/login.html', {'form': form})
     if request.method=="POST":
         form = LoginForm(request.POST)
@@ -58,7 +58,9 @@ def logout(request):
 
 def register(request):
     if request.method == 'POST':
+        print("register begin")
         form = RegistrationForm(request.POST)
+
         if form.is_valid():
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
@@ -68,7 +70,8 @@ def register(request):
 
             user_profile = UserProfile(user=user)
             user_profile.save()
-            return render(request,'users/login.html')
+            print('register success!!')
+            return redirect('/login.html')
 
     else:
         form = RegistrationForm
@@ -76,8 +79,66 @@ def register(request):
 
 @login_required()
 def profile(request):
-    username = request.user
-    return render(request, 'hello.html', locals())
+    current_user = request.user
+    user = get_object_or_404(User,pk=current_user.id)
+    print(user)
+    return render(request, 'users/profile.html', {'user': user})
+
+@login_required()
+def profile_update(request):
+    current_user = request.user
+    id = current_user.id
+    user = get_object_or_404(User, pk=id)
+    user_profile = get_object_or_404(UserProfile, user=user)
+
+    if request.method == 'POST':
+        form = ProfieForm(request.POST)
+
+        if form.is_valid():
+            user.first_name = form.cleaned_data['first_name']
+            user.last_name = form.cleaned_data['last_name']
+            user.save()
+
+            user_profile.dep = form.cleaned_data['dep']
+            user_profile.telephone = form.cleaned_data['telephone']
+            user_profile.save()
+
+            return render(request,'users/profile.html', args=[id])
+    else:
+        default_data = {'first_name': user.first_name, 'last_name':user.last_name, 'dep':user_profile.dep, 'telephone':user_profile.dep}
+        form = ProfieForm(default_data)
+    return render(request,'users/profile_update.html', {'form':form, 'user':user})
+
+@login_required()
+def get_user_id(request):
+    try:
+        return request.user.id
+    except:
+        return None
+
+@login_required()
+def changepwd(request):
+    id = get_user_id()
+    user = get_object_or_404(User, pk=id)
+
+    if request.method == "POST":
+        form = ChangePwdForm(request.POST)
+        if form.is_valid():
+            password = form.cleaned_data['old_password']
+            username = user.username
+            user = authenticate(username=username, password=password)
+
+            if user is not None and user.is_active:
+                new_password = form.cleaned_data['password2']
+                user.set_password(new_password)
+                user.save()
+                return HttpResponseRedirect("/login.html")
+            else:
+                return render(request, 'users/changepwd.html',{'form':form, 'user':user, 'message':'Old password is wrong, Try again'})
+    else:
+        form = ChangePwdForm()
+    return render(request, 'users/changepwd.html',{'form':form, 'user':user})
+
 
 
 @login_required()

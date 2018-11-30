@@ -36,7 +36,7 @@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                     <span class="block m-t-xs">
-                                        <strong class="font-bold">{{ user.nickname }}</strong>
+                                        <strong class="font-bold">{{ user.username }}</strong>
                                     </span>
                                     <span class="text-muted text-xs block">
                                         {% if user.is_superuser %}
@@ -49,10 +49,10 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animate fadeInRight m-t-xs">
-                                <li><a href={% url 'index' %}>profile</a></li>
+                                <li><a href={% url 'profile' %}>profile</a></li>
                                 <li><a href="">change password</li>
                                 {% if user.is_superuser %}
-                                    <li><a href={% url 'user_list' %}>user management</a></li>
+                                    <!--  <li><a>user management</a></li> -->
                                     <li><a href="">group management</a></li>
                                 {% endif %}
                             </ul>
@@ -69,9 +69,6 @@
                     <li>
                         <a><i class="fa fa-home"></i> <span class="nav-label">首页</span></a>
                     </li>
-
-
-
 
                 </ul>
             </div>
@@ -154,7 +151,7 @@
                         <!-- second icon end -->
 
                         <li>
-                            <a href={% url 'logout' %}>
+                            <a href="/logout.html">
                                 <i class="fa fa-sign-out"></i> 登 出
                             </a>
                         </li>

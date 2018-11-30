@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb  %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>UserProfile</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href={% url 'index' %}></a>
+                </li>
+                <li>
+                    <a>Users</a>
+                </li>
+                <li class="active">
+                    <strong>ChangePassword</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+<div class="row">
+    {% block content %}
+        <h2>Change Password</h2>
+        {% if message %}
+            {{ message }}
+        {% endif %}
+
+        <div class="form-wrapper">
+            <form method="post" action="changepwd.html" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_taga }} {{ field }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <div class="bottom-wrapper submit">
+                    <input type="submit" value="Submit">
+                </div>
+
+            </form>
+        </div>
+    {% endblock %}
+</div>

@@ -23,14 +23,17 @@
 {% endblock %}
 
 
+<div class="row">
 {% block content %}
 <div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        {% for i in users %}
+
+    {% for i in users %}
             <!-- users status begin -->
             <div class="col-lg-3" id="box-{{ i.id }}">
+
                 <div class="contact-box center-version">
-                    <a href={% url 'index' %} >
+                    <a href="/users/user_update/{{ i.id }}">
+
                         <h3 class="m-b-xs"><strong>{% if i.username %}{{ i.username }}{% else %}None{% endif %} </strong></h3>
                         {% if i.is_superuser %}
                             <div class="font-bold">Administrator</div>
@@ -38,7 +41,8 @@
                             <div class="font-bold">Ordinary Users</div>
                         {% endif %}
                         <address class="m-t-md">
-                            <i class="fa fa-phone">{% if i.tel %} {{ i.tel }} {% else %}none{% endif %}</i><br>
+                            <i class="fa fa-phone">{% if i.phone %} {{ i.phone }} {% else %}none{% endif %}</i><br>
+
                             <i class="fa fa-envelope-o">{% if i.email %}{{ i.email }}{% else %} none{% endif %}</i> <br>
                             <i class="fa fa-sign-in">{% if i.last_login %}{{ i.last_login }}{% else %}User not logged in {% endif %}</i><br>
                         </address>
@@ -56,7 +60,7 @@
                 </div>
             </div>
             <!--users status end -->
-        {% endfor %}
+    {% endfor %}
         <div class="col-lg-3">
            <div class="contact-box center-version">
                <a href={% url 'user_update' %}>
