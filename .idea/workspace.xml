@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1abd0893-9f14-46cd-b137-e7b18b93428e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/users/changepwd.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/profile_update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/users/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManageEngine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ManageEngine/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/user_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/user_update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/users_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/users_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.6/site-packages/django/conf/app_template/__init__.py-tpl" beforeDir="false" afterPath="$PROJECT_DIR$/templates/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pyvenv.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pyvenv.cfg" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -141,8 +127,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/users/changepwd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+            <state relative-caret-position="235">
+              <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -332,23 +318,7 @@
             <path>
               <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
               <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -437,12 +407,12 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.123667374" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.123667374" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.31813246" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3583062" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3583062" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4810401" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -750,8 +720,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/users/changepwd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        <state relative-caret-position="235">
+          <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
         </state>
       </provider>
     </entry>
