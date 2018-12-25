@@ -50,7 +50,7 @@
                             </a>
                             <ul class="dropdown-menu animate fadeInRight m-t-xs">
                                 <li><a href={% url 'profile' %}>profile</a></li>
-                                <li><a href="">change password</li>
+                                <li><a href={% url 'changepwd'  %}>change password</li>
                                 {% if user.is_superuser %}
                                     <!--  <li><a>user management</a></li> -->
                                     <li><a href="">group management</a></li>

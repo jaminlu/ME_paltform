@@ -124,6 +124,7 @@ def changepwd(request):
 
     if request.method == "POST":
         form = ChangePwdForm(request.POST)
+        print(form)
         if form.is_valid():
             password = form.cleaned_data['old_password']
             username = user.username

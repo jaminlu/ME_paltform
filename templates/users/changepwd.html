@@ -1,48 +1,65 @@
 {% extends 'base.html' %}
 
-{% block breadcrumb  %}
-    <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-10">
-            <h2>UserProfile</h2>
-            <ol class="breadcrumb">
-                <li>
-                    <a href={% url 'index' %}></a>
-                </li>
-                <li>
-                    <a>Users</a>
-                </li>
-                <li class="active">
-                    <strong>ChangePassword</strong>
-                </li>
-            </ol>
-        </div>
-    </div>
+{% load bootstrap3 %}
+{% block  title %} ME | change password{% endblock %}
+
+
+{% block header-css %}
 {% endblock %}
 
 <div class="row">
-    {% block content %}
-        <h2>Change Password</h2>
-        {% if message %}
-            {{ message }}
-        {% endif %}
+{% block content %}
 
-        <div class="form-wrapper">
-            <form method="post" action="changepwd.html" enctype="multipart/form-data">
-                {% csrf_token %}
-                {% for field in form %}
-                    <div class="fieldWrapper">
-                        {{ field.errors }}
-                        {{ field.label_taga }} {{ field }}
-                        {% if field.help_text %}
-                            <p class="help">{{ field.help_text|safe }}</p>
-                        {% endif %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="panel-options">
+                        <ul class="nav nav-tabs">
+
+                            <li class="active">
+                                <a href="" class="text-center">密码 </a>
+                            </li>
+
+                        </ul>
                     </div>
-                {% endfor %}
-                <div class="bottom-wrapper submit">
-                    <input type="submit" value="Submit">
-                </div>
+                    <div class="tab-content" style="background-color: #ffffff">
+                        <div class="wrapper wrapper-content animated fadeInRight">
 
-            </form>
+                            <form method="post" class="form-horizontal" action="changepwd.html" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                {% if form.non_field_errors %}
+                                    <div class="alert-danger" style="margin: 20px auto 0px">
+                                        {{ form.non_field_errors }}
+                                    </div>
+                                {% endif %}
+
+                                <div class="form-group">
+                                    <div class="col-sm-10 col-sm-offset-0">
+                                        {{ message }}
+                                        {% bootstrap_field form.old_password layout="horizontal" %}
+                                        {% bootstrap_field form.password1 layout="horizontal" %}
+                                        {% bootstrap_field form.password2 layout="horizontal" %}
+                                    </div>
+                                </div>
+                                <div class="hr-line-dashed"></div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-3">
+                                    <button class="bt btn-primary" type="submit">Reset</button>
+                                </div>
+                            </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endblock %}
+    </div>
+{% endblock %}
 </div>
+{% block footer-js %}
+{% endblock %}
