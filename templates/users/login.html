@@ -29,9 +29,6 @@
                 <div class="alert alert-danger text-center">{{ error }}</div>
             {% endif %}
             <h3>欢迎来到ME</h3>
-            <p>这是一个非常有趣的平台,在这里你的工作将变得非常简单.
-            </p>
-            <strong>请登录</strong>
             <form class="m-t" role="form"  action="login.html" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
@@ -41,9 +38,12 @@
                     {{ form.password }}
                 </div>
                 <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
-                <a href="/register.html">Register</a>
+                <div style="margin-top: 10px">no account?<a href="register.html"> sign up</a>
+                </div>
 
-                <a><small>忘记密码?</small></a>
+                 <div class="hr-line-dashed"></div>
+                <p href="#">forget password?please contact administrator.</p>
+
             </form>
             <p class="m-t"> <small>ME SA platform &copy; 2018</small> </p>
         </div>
