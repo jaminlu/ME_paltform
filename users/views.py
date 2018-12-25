@@ -86,28 +86,29 @@ def profile(request):
 
 @login_required()
 def profile_update(request):
+    print('enter profile_update')
     current_user = request.user
+    print(current_user)
     id = current_user.id
+    print(id)
     user = get_object_or_404(User, pk=id)
-    user_profile = get_object_or_404(UserProfile, user=user)
-
+    user_profile = get_object_or_404(UserProfile,user_id=id)
+    print("sss %s" % user_profile)
     if request.method == 'POST':
         form = ProfieForm(request.POST)
 
         if form.is_valid():
-            user.first_name = form.cleaned_data['first_name']
-            user.last_name = form.cleaned_data['last_name']
-            user.save()
 
             user_profile.dep = form.cleaned_data['dep']
             user_profile.telephone = form.cleaned_data['telephone']
+            print(user_profile)
             user_profile.save()
 
-            return render(request,'users/profile.html', args=[id])
+            return render(request,'users/profile.html', {'user':user})
     else:
         default_data = {'first_name': user.first_name, 'last_name':user.last_name, 'dep':user_profile.dep, 'telephone':user_profile.dep}
         form = ProfieForm(default_data)
-    return render(request,'users/profile_update.html', {'form':form, 'user':user})
+        return render(request,'users/profile_update.html', {'form':form, 'user':user})
 
 @login_required()
 def get_user_id(request):
@@ -118,7 +119,7 @@ def get_user_id(request):
 
 @login_required()
 def changepwd(request):
-    id = get_user_id()
+    id = get_user_id(request)
     user = get_object_or_404(User, pk=id)
 
     if request.method == "POST":
@@ -144,9 +145,7 @@ def changepwd(request):
 @login_required()
 def user_list(request):
     users1 = User.objects.all()
-    print(users1)
     users = User.objects.all().order_by('id')
-    print(users)
     # phone = Profile.objects.filter(id__gt=0)
     return render(request, 'users/users_list.html', {'users': users})
 
@@ -158,19 +157,16 @@ def load_profile(user):
         profile = Profile.objects.create(user=user)
         return profile
 
-
+'''
 @admin_required()
 @transaction.atomic
 def user_update(request, id):
-    print(id)
     user = User.objects.filter(id=id)
     username = User.objects.get(id=id)
     profile = load_profile(username)
     print('enter')
     user_form = UserForm(request.POST, instance=username)  # print the user of operate
-    print(user_form)
     profile_form = ProfileForm(request.POST, instance=profile)
-    print(profile_form)
     if request.method == 'POST':
         print(user_form)
         print(profile_form)
@@ -187,6 +183,6 @@ def user_update(request, id):
         return render(request, 'users/user_update.html', {'user_form': user_form, 'profile_form': profile_form})
     else:
         return render(request, 'users/user_update.html', locals())
-
+'''
 def perm_deny(request):
     return render(request, 'perm_deny.html', locals())

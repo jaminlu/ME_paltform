@@ -38,4 +38,4 @@ class UserProfile(models.Model):
         verbose_name = 'User Profile'
 
     def __str__(self):
-        return self.user.__str__()
+        return "{}".format(self.user.__str__())

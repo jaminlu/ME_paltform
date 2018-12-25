@@ -75,14 +75,12 @@ class RegistrationForm(forms.Form):
 
 
 class ProfieForm(forms.Form):
-    first_name = forms.CharField(label='First Name',max_length=50, required=False)
-    last_name = forms.CharField(label='Last Name', max_length=50, required=False)
     dep = forms.CharField(label='department', max_length=50, required=False)
     telephone = forms.CharField(label='Telephone', max_length=50, required=False)
 
 
 class ChangePwdForm(forms.Form):
-    old_password = forms.CharField(label='Old password', widget=forms.PasswordInput)
+    old_password = forms.CharField(label='Old password', required=True,widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'old Password'}))
     password1 = forms.CharField(label='New Password', required=True,widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':u'New PassWord'}))
     password2 = forms.CharField(label='Password Confirmation',required=True,widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': u'Password Confirmation'}))
 
