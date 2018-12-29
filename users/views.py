@@ -13,7 +13,7 @@ from users.models import UserProfile
 # Create your views here.
 
 
-@login_required(login_url="/login.html")
+@login_required(login_url="/login")
 def index(request):
     '''
     首页
@@ -27,7 +27,6 @@ def index(request):
 def login_view(request):
     if request.method == 'GET':
         form = LoginForm()
-        print("login_view get")
         return render(request, 'users/login.html', {'form': form})
     if request.method=="POST":
         form = LoginForm(request.POST)
@@ -54,7 +53,7 @@ def login_view(request):
 
 def logout(request):
     request.session.clear()
-    return redirect('/login.html')
+    return redirect('/login')
 
 def register(request):
     if request.method == 'POST':

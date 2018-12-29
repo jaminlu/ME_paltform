@@ -29,7 +29,7 @@
                 <div class="alert alert-danger text-center">{{ error }}</div>
             {% endif %}
             <h3>欢迎来到ME</h3>
-            <form class="m-t" role="form"  action="login.html" method="POST">
+            <form class="m-t" role="form"  action={% url "login" %}  method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.username }}
