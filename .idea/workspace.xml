@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1abd0893-9f14-46cd-b137-e7b18b93428e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ManageEngine/api/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManageEngine/api/falcon_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManageEngine/api/screen.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ManageEngine/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ManageEngine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ManageEngine.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManageEngine/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ManageEngine/api/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManageEngine/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ManageEngine/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ManageEngine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ManageEngine/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/users/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/users/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/作业管理平台设计.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,7 +89,7 @@
         <counts>
           <entry key="dummy" value="1" />
           <entry key="html" value="3935" />
-          <entry key="py" value="11431" />
+          <entry key="py" value="11444" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -109,14 +97,14 @@
         <counts>
           <entry key="HTML" value="3935" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="Python" value="11431" />
+          <entry key="Python" value="11444" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="html" value="27" />
           <entry key="ico" value="1" />
-          <entry key="py" value="58" />
+          <entry key="py" value="60" />
           <entry key="pyi" value="1" />
         </counts>
       </usages-collector>
@@ -124,7 +112,7 @@
         <counts>
           <entry key="HTML" value="27" />
           <entry key="Image" value="1" />
-          <entry key="Python" value="58" />
+          <entry key="Python" value="60" />
           <entry key="PythonStub" value="1" />
         </counts>
       </usages-collector>
@@ -170,6 +158,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ManageEngine/api/falcon_api.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="522">
+              <caret line="29" column="150" selection-start-line="29" selection-start-column="150" selection-end-line="29" selection-end-column="150" />
+              <folding>
+                <element signature="e#23#34#0" expanded="true" />
+                <marker date="1545812847686" expanded="true" signature="132:137" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ManageEngine/config.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="58" column="42" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/message/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="288">
@@ -208,7 +218,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="640">
@@ -271,7 +281,6 @@
         <option value="$PROJECT_DIR$/users/forms.py" />
         <option value="$PROJECT_DIR$/templates/users/changepwd.html" />
         <option value="$PROJECT_DIR$/templates/users/profile.html" />
-        <option value="$PROJECT_DIR$/ManageEngine/config.py" />
         <option value="$PROJECT_DIR$/ManageEngine/api/auth.py" />
         <option value="$PROJECT_DIR$/ManageEngine/api/falcon-api.py" />
         <option value="$PROJECT_DIR$/ManageEngine/api/__init__.py" />
@@ -283,6 +292,7 @@
         <option value="$PROJECT_DIR$/ManageEngine/urls.py" />
         <option value="$PROJECT_DIR$/users/views.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="$PROJECT_DIR$/ManageEngine/config.py" />
       </list>
     </option>
   </component>
@@ -322,16 +332,6 @@
               <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
               <item name="ManageEngine" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="message" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ME_paltform" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ME_paltform" type="b2602c69:ProjectViewProjectNode" />
@@ -476,7 +476,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.116204694" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14978679" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -751,24 +751,6 @@
     <entry file="file://$PROJECT_DIR$/ManageEngine/api/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/ManageEngine/api/falcon_api.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="29" column="150" lean-forward="true" selection-start-line="29" selection-start-column="150" selection-end-line="29" selection-end-column="150" />
-          <folding>
-            <element signature="e#23#34#0" expanded="true" />
-            <marker date="1545812847686" expanded="true" signature="132:137" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ManageEngine/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="58" column="42" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ManageEngine/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -790,13 +772,6 @@
             <marker date="1546065797822" expanded="true" signature="3792:3866" ph="..." />
             <marker date="1546065797822" expanded="true" signature="3907:4795" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ManageEngine/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -835,6 +810,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="87" column="80" selection-start-line="87" selection-start-column="80" selection-end-line="87" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageEngine/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="135" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageEngine/api/falcon_api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="29" column="150" selection-start-line="29" selection-start-column="150" selection-end-line="29" selection-end-column="150" />
+          <folding>
+            <element signature="e#23#34#0" expanded="true" />
+            <marker date="1545812847686" expanded="true" signature="132:137" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ManageEngine/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="58" column="42" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
         </state>
       </provider>
     </entry>

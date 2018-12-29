@@ -7,7 +7,7 @@ PERMANENT_SESSION_LIFETIME = os.environ.get("PERMANENT_SESSION_LIFETIME",3600 * 
 SITE_COOKIE = os.environ.get("SITE_COOKIE","open-falcon-ck")
 
 # Falcon+ API
-API_ADDR = os.environ.get("API_ADDR","http://xxxxx:8090/api/v1")
+API_ADDR = os.environ.get("API_ADDR","http://180.97.85.154:8090/api/v1")
 
 # portal database
 # TODO: read from api instead of db
@@ -22,7 +22,7 @@ PORTAL_DB_NAME = os.environ.get("PORTAL_DB_NAME","falcon_portal")
 ALARM_DB_HOST = os.environ.get("ALARM_DB_HOST","master.mysql.openfalcon")
 ALARM_DB_PORT = int(os.environ.get("ALARM_DB_PORT",3306))
 ALARM_DB_USER = os.environ.get("ALARM_DB_USER","root")
-ALARM_DB_PASS = os.environ.get("ALARM_DB_PASS","xxxx")
+ALARM_DB_PASS = os.environ.get("ALARM_DB_PASS","monitor_admin")
 ALARM_DB_NAME = os.environ.get("ALARM_DB_NAME","alarms")
 
 # ldap config
