@@ -11,6 +11,7 @@ from django.db import transaction
 from django.contrib import messages
 from users.models import UserProfile
 # Create your views here.
+import datetime
 
 
 @login_required(login_url="/login")
@@ -21,6 +22,8 @@ def index(request):
     :return:
     '''
     print("start index")
+    username = request.user
+    nowtime = datetime.datetime.now()
     return render(request, 'users/index.html', locals())
 
 
@@ -139,7 +142,6 @@ def changepwd(request):
     else:
         form = ChangePwdForm()
     return render(request, 'users/changepwd.html',{'form':form, 'user':user})
-
 
 
 @login_required()

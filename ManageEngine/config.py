@@ -7,7 +7,7 @@ PERMANENT_SESSION_LIFETIME = os.environ.get("PERMANENT_SESSION_LIFETIME",3600 * 
 SITE_COOKIE = os.environ.get("SITE_COOKIE","open-falcon-ck")
 
 # Falcon+ API
-API_ADDR = os.environ.get("API_ADDR","http://180.97.85.154:8090/api/v1")
+API_ADDR = os.environ.get("API_ADDR","http://127.0.0.1:8090/api/v1")
 
 # portal database
 # TODO: read from api instead of db
