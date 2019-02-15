@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import json
-import ssl
 import requests
-
-ssl._create_default_https_context = ssl._create_unverified_context()
+requests.packages.urllib3.disable_warnings()
 
 
 class SaltApi(object):
@@ -25,20 +23,59 @@ class SaltApi(object):
         self.login_url = self.host + "/login"
 
         print(self.login_url)
-        resp = requests.post(
-            self.login_url,
-            verify=False,
-            data={
-                'username': username,
-                'password': password,
-                'eauth': eauth
-            }
-        )
+        data = {'username': username, 'password': password, 'eauth': eauth}
+        resp = requests.post(self.login_url,
+                            verify=False,
+                            data=data,
+                             )
         if resp.status_code == 200:
             self.header['X-Auth-Token'] = resp.json()['return'][0]['token']
         else:
             raise Exception('Error from source %s' % resp.text)
 
+    def get_data(self, params):
+        """
+        :param params:
+        :return:
+        """
+        send_data = json.dumps(params)
+        response = requests.post(
+            self.host,
+            verify=False,
+            headers=self.header,
+            data=send_data
+        )
+        result = response.json()
+        return result['return'][0]
+
+    def salt_command(self, tgt, method, *args, **kwargs):
+        """
+        远程执行命令
+        :param tgt:
+        :param method:
+        :param args:
+        :param kwargs:
+        :return:
+        """
+        params = {
+            'client': 'local',
+            'fun': method,
+            'tgt': tgt
+        }
+        if args:
+            params.update({
+                'arg': args
+            })
+
+        if kwargs:
+            params.update({
+                'kwarg': kwargs
+            })
+
+        result = self.get_data(params)
+        return result
+
 
 if __name__ == '__main__':
-    salt = SaltApi(host='127.0.0.1', username='kbson', password='kbson')
+    salt = SaltApi(host='10.10.32.102', username='kbson', password='kbson')
+    print(salt.salt_command('*', 'cmd.run', 'hostname'))
