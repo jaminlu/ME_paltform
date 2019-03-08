@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'bootstrap3',
     'users',
     'message',
+    'assets',
+    'saltstack',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 ######saltstack configuration#######
 MASTER_API_URL = 'https://10.10.32.102:8000'
+SALT_HOST='10.10.32.102'
+SALT_PORT='8000'
+username='kbson'
+password='kbson'
+
+
