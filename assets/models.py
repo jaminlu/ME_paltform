@@ -60,7 +60,9 @@ class IDC(models.Model):
     dns = models.CharField(max_length=64,null=True,blank=True,verbose_name="DNS",help_text="DNS")
     email = models.EmailField(verbose_name="email地址")
     comment = models.TextField(blank=True,verbose_name="备注",help_text="备注")
+    #首次添加时间
     add_time = models.DateTimeField(auto_now_add=True,verbose_name="添加时间",help_text="添加时间")
+    #修改时间
     mod_time = models.DateTimeField(auto_now=True,verbose_name="修改时间",help_text="修改时间")
 
     class Meta:
