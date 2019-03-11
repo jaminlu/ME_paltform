@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'bootstrap3',
     'users',
     'message',
-    'assets',
+    'idc',
     'saltstack',
+    'assets',
 ]
 
 MIDDLEWARE = [

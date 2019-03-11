@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.core.validators import *
-from assets.models import Assets, IDC
+from idc.models import  IDC
 import datetime
 
 

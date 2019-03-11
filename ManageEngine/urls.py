@@ -20,7 +20,7 @@ from django.conf.urls import url, include
 from users.views import login_view, index, logout, register, profile, changepwd, profile_update
 from .views import page_not_found
 from django.conf.urls import handler404
-import assets
+import idc
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +35,7 @@ urlpatterns = [
     path('changepwd.html', changepwd, name='changepwd'),
 
     # assets view
+    path('idc/', include('idc.urls')),
     path('assets/', include('assets.urls')),
 
 ]

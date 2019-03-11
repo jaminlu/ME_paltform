@@ -1,17 +1,9 @@
 from django.urls import path
 from django.conf.urls import url
-from assets import views
+from .views import assetinfo
 
-
-app_name = "asset"
+app_name = 'assets'
 
 urlpatterns = [
-    path('', views.assetinfo, name='assetsinfo'),
-    path('index.html', views.index, name='index'),
-    url(r'^assetinfo', views.assetinfo, name='assetinfo'),
-    url(r'^idcinfo', views.idcinfo, name='idcinfo'),
-    url(r'^idcadd', views.idcadd, name='idcadd'),
-    url(r'^idcdetail/(\d+)', views.idcdetail, name='idcdetail',),
+    url(r'^assetinfo', view=assetinfo, name='assetinfo'),
 ]
-
-

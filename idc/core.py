@@ -5,7 +5,7 @@ import sys
 from ManageEngine import settings
 
 from saltstack import saltapi
-from assets.models import Assets, IDC
+from idc.models import Assets, IDC
 import datetime
 
 #app_root = os.path.dirname(__file__)
