@@ -74,7 +74,7 @@
                                <td class="text-center" name="id" value="{{ idc.id }}" data-editable='false'>
                                         <input name="id" value="{{ idc.id }}" type="checkbox" class="i-checks">
                                     </td>
-                                <td class="text-center">{{ idc.name }}</td>
+                                <td class="text-center" id="idcname">{{ idc.name }}</td>
                                 <td class="text-center">{{ idc.idc_flag }}</td>
                                 <td class="text-center">{{ idc.tel_ip }}</td>
                                 <td class="text-center">{{ idc.mob_ip }}</td>
@@ -84,9 +84,9 @@
                                 <td class="text-center">{{ idc.address }}</td>
                                 <td class="text-center">{{ idc.email }}</td>
                                     <td class="text-center" data-editable='false'>
+                                        <a  data-toggle="modal"  name="editidcinfo" value="{{ idc.id }}" class="btn btn-xs btn-info">编辑</a>
                                         <a name="update" value="{{ idc.id }}" class=" btn btn-xs btn-warning">详细</a>
                                         <!-- 点击编辑 模态对话框弹出来更新IDC信息  -->
-                                        <a href="#" data-toggle="modal"  id="editidcinfo" cid="{{ idc.id }}" class="btn btn-xs btn-info">编辑</a>
                                         <!--Modal  开始-->
                                         <div class="modal fade bs-example-modal-sm" id="updatemyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                             <div class="modal-dialog "  style="width:500px;;" role="document">
@@ -151,7 +151,7 @@
                             </tbody>
                         </table>
                         </form>
-            
+                <!--
                 <div class="col-sm-6">
                     </div>
                         <div class="col-sm-6">
@@ -173,10 +173,13 @@
                         </div>
                     </div>
                 </div>
+                -->
     </div>
     <!--管理资产列表js-->
     {% block assest_js %}
-    <script type="text/javascript">
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
                             /*全选功能*/
                     $(document).ready(function() {
                         $("input[id=checkall]").click(
@@ -198,12 +201,27 @@
                                                     });
                                             swal("更新!", "资产更新成功", "success");
                         });
-                        $("#editidcinfo").click(
+                        $("a[name='editidcinfo']").click(
                             function () {
+                                alert("hello");
                                 console.log("hello!");
                                 $("#updatemyModal").modal('show');
                                 var id = $(this).attr('cid');
+                                //var name =document.getElementById("table")
+                                //$.ajax(
+                                //    {
+                                //        url: '/idc/idcdetal/{{ id }}',
+                                //        data: {"id": id},
+                                //        type: "post",
+                                //        function(ret){
+                                //            console.log(ret);
+                                //        }
+                                //    }
+
+                                //)
+                                ////var name = tds;
                                 console.log(id);
+                                //console.log(name);
 
 
                             }
