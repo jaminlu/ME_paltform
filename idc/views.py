@@ -8,22 +8,24 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 
-
-def idcdetail(request,func):
+def idcdetail(request, func):
     if request.method == 'GET':
         print(type(func))
         obj = models.IDC.objects.get(id=func)
+        print("enter idcdetail")
         return render(request, 'idc/../templates/assets/asset_detail.html', locals())
 
 
 def page_not_found(request):
     return render_to_response("404.html")
 
+
 def index(request):
     print("index")
     return render_to_response("404.html")
 
-#展示机房信息
+
+# 展示机房信息
 def idcinfo(request):
     print("idc info'")
     idc_info = models.IDC.objects.all()
@@ -32,25 +34,36 @@ def idcinfo(request):
     print(idc_info)
     return render(request, 'idc/idc_info.html', locals())
 
-#新增机房
+
+# 新增机房
 def idcadd(request):
     print("add idcinfo")
-    form=IdcForm()
+    form = IdcForm()
     if request.method == "POST":
         form = IdcForm(request.POST)
         if form.is_valid():
             print("form valid.")
-            #form_data = form.cleaned_data
-            #print(form_data)
-            #new_idc_obj = models.IDC(**form_data)
-            #new_idc_obj.save()
+            # form_data = form.cleaned_data
+            # print(form_data)
+            # new_idc_obj = models.IDC(**form_data)
+            # new_idc_obj.save()
             form.save()
             return HttpResponseRedirect('idcinfo/')
     else:
-        form=IdcForm()
+        form = IdcForm()
     print("通过ajax传参数过来，然后更新model")
     return render(request, 'idc/idc_add.html', locals())
 
-#机房信息编辑
+
+# 编辑机房信息
+def idcedit(request):
+    print("idc edit")
+    print(id)
+    return None
+
+
+# 机房信息编辑
 def idcinfo_edit(request):
-    return
+    if request.method == 'POST':
+        print('post success')
+    return None
