@@ -6,6 +6,7 @@ from idc.forms import IdcForm
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from idc.models import IDC
 
 
 def idcdetail(request, func):
@@ -37,12 +38,10 @@ def idcinfo(request):
 
 # 新增机房
 def idcadd(request):
-    print("add idcinfo")
     form = IdcForm()
     if request.method == "POST":
         form = IdcForm(request.POST)
         if form.is_valid():
-            print("form valid.")
             # form_data = form.cleaned_data
             # print(form_data)
             # new_idc_obj = models.IDC(**form_data)
@@ -51,7 +50,6 @@ def idcadd(request):
             return HttpResponseRedirect('idcinfo/')
     else:
         form = IdcForm()
-    print("通过ajax传参数过来，然后更新model")
     return render(request, 'idc/idc_add.html', locals())
 
 
@@ -64,6 +62,18 @@ def idcedit(request):
 
 # 机房信息编辑
 def idcinfo_edit(request):
+    id = request.POST.get('id')
+    idc_info = IDC.objects.get(id=int(id))
+    print(idc_info)
     if request.method == 'POST':
-        print('post success')
-    return None
+        print("idc_edit")
+        print("id is %s" % id)
+        form = IdcForm(request.POST,instance=idc_info)
+        if form.is_valid():
+            print('post success')
+            form.save()
+            return HttpResponseRedirect('idcinfo/')
+    else:
+        form = IdcForm()
+
+    return render(request,'idc/idc_info.html',locals())

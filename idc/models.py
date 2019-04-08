@@ -19,11 +19,11 @@ class IDC(models.Model):
     #修改时间
     mod_time = models.DateTimeField(auto_now=True,verbose_name="修改时间",help_text="修改时间")
 
-    class Meta:
-        verbose_name="IDC机房"
-        verbose_name_plural=verbose_name
+    #class Meta:
+    #    verbose_name="IDC机房"
+    #    verbose_name_plural=verbose_name
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+    #    return self.name
 
 

@@ -252,21 +252,22 @@
 
             function save() {
                 //获取模态数据,接受隐藏的ID值。
-                var id = $('#id').val();
-                console.log("save");
-                console.log(id);
                 var idcname = $('#idcname').val();
-                var idc_flag = $('#idc_flag').val();
-                var tel_ip = $('#tel_ip').val();
-                var uni_ip = $('#uni_ip').val();
-                var mob_ip = $('#mob_ip').val();
-                var dns_ip = $('#dns_ip').val();
-                var comment = $('#comment').val();
-                var address = $('#address').val();
-                var email = $('#email').val();
                 $.ajax({
                     type: 'post',
                     url: '/idc/idcedit/',
+                    data: {
+                        'id': $('#id').val(),
+                        'idcname':  $('#idcname').val(),
+                        'idc_flag': $('#idc_flag').val(),
+                        'tel_ip': $('#tel_ip').val(),
+                        'uni_ip': $('#uni_ip').val(),
+                        'mob_ip': $('#mob_ip').val(),
+                        'dns_ip': $('#dns_ip').val(),
+                        'comment': $('#comment').val(),
+                        'address': $('#address').val(),
+                        'email': $('#email').val(),
+                    },
                     success: function (result) {
                         //location.reload();
                         console.log(result);
