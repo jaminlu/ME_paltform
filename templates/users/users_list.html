@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}
+    ME | User ManageMent
+{% endblock %}
+
+{% block breadcrumb  %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>user management</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href={% url 'index' %}></a>
+                </li>
+                <li>
+                    <a>Users</a>
+                </li>
+                <li class="active">
+                    <strong>user management</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+
+<div class="row">
+{% block content %}
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    {% for i in users %}
+            <!-- users status begin -->
+            <div class="col-lg-3" id="box-{{ i.id }}">
+
+                <div class="contact-box center-version">
+                    <a href="/users/user_update/{{ i.id }}">
+
+                        <h3 class="m-b-xs"><strong>{% if i.username %}{{ i.username }}{% else %}None{% endif %} </strong></h3>
+                        {% if i.is_superuser %}
+                            <div class="font-bold">Administrator</div>
+                        {% else %}
+                            <div class="font-bold">Ordinary Users</div>
+                        {% endif %}
+                        <address class="m-t-md">
+                            <i class="fa fa-phone">{% if i.phone %} {{ i.phone }} {% else %}none{% endif %}</i><br>
+
+                            <i class="fa fa-envelope-o">{% if i.email %}{{ i.email }}{% else %} none{% endif %}</i> <br>
+                            <i class="fa fa-sign-in">{% if i.last_login %}{{ i.last_login }}{% else %}User not logged in {% endif %}</i><br>
+                        </address>
+                    </a>
+                    <div class="contact-box-footer">
+                        <div class="m-t-xs btn-group">
+                            {% if i.is_superuser %}
+                                <a class="btn btn-xs btn-primary btn-outline" href="#"><i class="fa fa-angellist">hi</i></a>
+                            {% else %}
+                                <a class="btn btn-xs btn-warning btn-outline" href={% url 'index' %}><i class="fa fa-warning">delete</i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--users status end -->
+    {% endfor %}
+        <div class="col-lg-3">
+           <div class="contact-box center-version">
+               <a href={% url 'user_update' %}>
+                   <br>
+                   <br>
+                   <h3><i class="fa fa-plus"></i></h3>
+                   <br>
+                   <br>
+                   <br>
+               </a>
+               <div class="contact-box-footer">
+                   <div class="m-t-xs btn-group">
+                       <a class="btn btn-xs btn-info btn-outline" href={% url 'index' %}><i class="fa fa-reply">return</i></a>
+                   </div>
+               </div>
+
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

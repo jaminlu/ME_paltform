@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb  %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>UserProfile</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href={% url 'index' %}></a>
+                </li>
+                <li>
+                    <a>Users</a>
+                </li>
+                <li class="active">
+                    <strong>UserProfile</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+<div class="row">
+    {% block content %}
+        <h2>Account Info</h2>
+        <ul>
+            <li>UserName: {{ user.username }}</li>
+            <li>Email: {{ user.email }}</li>
+        </ul>
+        <h2>My Profile</h2>
+        <ul>
+            <li>First Name: {{ user.first_name }}</li>
+            <li>Last Name: {{ user.last_name }}</li>
+            <li>Departmane: {{ user.profile.dep }}</li>
+            <li>Telephone: {{ user.profile.telephone }}</li>
+        </ul>
+
+        {% if user.is_authenticated %}
+            <a class="btn btn-info btn-primary" href="/profile_update.html">Edit Profile</a>
+            <a class="btn btn-info btn-primary" href="/changepwd.html">Change Password</a>
+        {% endif %}
+    {% endblock %}
+</div>

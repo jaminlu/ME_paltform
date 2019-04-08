@@ -1,0 +1,282 @@
+{% extends "base.html" %}
+{% block title %}
+    IDC|机房信息
+{% endblock %}
+
+{% block breadcrumb %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-10">
+            <h2>user management</h2>
+            <ol class="breadcrumb">
+                <li>
+                    <a href={% url 'index' %}></a>
+                </li>
+                <li>
+                    <a>Users</a>
+                </li>
+                <li class="active">
+                    <strong>user management</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">机房信息</h3>
+    </div>
+    <div class="panel-body">
+        <form id="asset_form">
+            <div class="col-sm-1" style="padding-left: 0">
+                <!--模态对话框 点击保存资产-->
+                <a href="{% url "idc:idcadd" %}" class="btn btn-sm btn-primary"> 新增机房信息 </a>
+            </div>
+
+            <div class="col-sm-4" style="float: right">
+                <div class="input-group inline-group">
+                    <input type="text" class="form-control m-b input-sm" id="search_input" name="keyword" value=""
+                           placeholder="Search">
+                    <input type="text" style="display: none">
+                    <div class="input-group-btn">
+                        <button id='search_btn' href="#" type="button" class="btn btn-sm btn-primary search-btn"
+                        ">
+                        - 搜索 -
+                        </button>
+                        <button type="button" href="#" name="export" class="btn btn-sm btn-success search-btn-excel"
+                                onclick="return false">
+                            - 导出 -
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-bordered table-hover dataTables_filter " id="editable"
+                   name="editable">
+                <thead>
+                <tr class="button-primary">
+                    <th class="text-center">
+                        <input id="checkall" type="checkbox" class="i-checks" name="checkall">
+                    </th>
+                    <th class="text-center">机房名称</th>
+                    <th class="text-center">机房标识</th>
+                    <th class="text-center">电信IP</th>
+                    <th class="text-center">移动IP</th>
+                    <th class="text-center">联通IP</th>
+                    <th class="text-center">机房DNS</th>
+                    <th class="text-center">备注</th>
+                    <th class="text-center">机房地址</th>
+                    <th class="text-center">email</th>
+                    <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for idc in idc_info %}
+                    <tr class="btn-default">
+                        <td class="text-center" name="id" value="{{ idc.id }}" data-editable='false'>
+                            <input name="id" value="{{ idc.id }}" type="checkbox" class="i-checks">
+                        </td>
+                        <td class="text-center">{{ idc.name }}</td>
+                        <td class="text-center">{{ idc.idc_flag }}</td>
+                        <td class="text-center">{{ idc.tel_ip }}</td>
+                        <td class="text-center">{{ idc.mob_ip }}</td>
+                        <td class="text-center">{{ idc.uni_ip }}</td>
+                        <td class="text-center">{{ idc.dns }}</td>
+                        <td class="text-center">{{ idc.comment }}</td>
+                        <td class="text-center">{{ idc.address }}</td>
+                        <td class="text-center">{{ idc.email }}</td>
+                        <td class="text-center" data-editable='false'>
+                            <a data-toggle="modal" name="editidcinfo" value="{{ idc.id }}" class="btn btn-xs btn-info">编辑</a>
+                            <a name="update" value="{{ idc.id }}" class=" btn btn-xs btn-warning">详细</a>
+                            <!-- 点击编辑 模态对话框弹出来更新IDC信息  -->
+                            <!--Modal  开始-->
+                            <div class="modal fade bs-example-modal-sm" id="updatemyModal" value="{{ idc.id }}" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel">
+                                <div class="modal-dialog " style="width:500px;" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">更新IDC信息</h4>
+                                        </div>
+                                        <div class="modal-body" style="height:400px;">
+                                            <form>
+                                                <div class="form-inline row">
+                                                    <label for="idcname">机房名字</label>
+                                                    <!-- 定义一个隐藏的input,传入id值-->
+                                                    <input type="hidden" id="id" name="id" value=''>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="idcname" placeholder="机房名字，比如洛阳tw06三线">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="idc_flag">机房标识</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="idc_flag" placeholder="机房标识，比如t06">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="tel_ip">电信IP段</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="tel_ip" placeholder="IP段，比如101.71.7.0/26,没有可不填">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="uni_ip">联通IP段</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="uni_ip" placeholder="IP段，比如101.71.7.0/26,没有可不填">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="mob_ip">移动IP段</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="mob_ip" placeholder="IP段，比如101.71.7.0/26,没有可不填">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="dns_ip">机房DNS</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="dns_ip" placeholder="DNS地址,没有可不填">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="comment">备注</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="comment" placeholder="备注">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="address">机房地址</label>
+                                                    <input type="text" class="form-control" style="width: 350px"
+                                                           id="address" placeholder="机房地址,没有可不填">
+                                                </div>
+                                                <div class="form-inline row">
+                                                    <label for="email">email地址</label>
+                                                    <input type="email" class="form-control" style="width: 350px"
+                                                           id="email" placeholder="机房联系邮箱,没有可不填">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                            <button type="button" class="btn btn-primary" onclick="save()" id="{{ idc.id }}">保存</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Modal 结束--->
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </form>
+        <!--
+                <div class="col-sm-6">
+                    </div>
+                        <div class="col-sm-6">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="editable_paginate">
+                                            <ul class="pagination" style="margin-top: 0; float: right">
+                                            {% if assets.has_previous %}
+                                                    <li class="paginate_button previous disabled" aria-controls="editable" tabindex="0" id="editable_previous">
+                                                         <a class="?page={{ assets.previous_page_number }}" href="#">Previous</a>
+                                                    </li>
+                                            {% endif %}
+                                            {% if assets.has_next %}
+                                                    <li class="paginate_button next disabled" aria-controls="editable" tabindex="0" id="editable_next">
+                                                        <a class="page" href="#">Next</a>
+                                                    </li>
+                                                    {% endif %}
+
+                                            </ul>
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+    </div>
+    <!--管理资产列表js-->
+    {% block assest_js %}
+        <script type="text/javascript">
+        $.ajaxSetup({headers:{"X-CSRFToken": '{{ csrf_token }}'}});
+        </script>
+        <script>
+            /*全选功能*/
+            $(document).ready(function () {
+                $("input[id=checkall]").click(
+                    function () {
+                        console.log("checkall");
+                        if (this.checked) {
+                            $("input[type=checkbox]").prop('checked', true)
+                        } else {
+                            $("input[type=checkbox]").prop('checked', false)
+                        }
+                    }
+                );
+                $("a[name='update']").click(
+                    function () {
+                        console.log(" 详细!!!!");
+                        var updateid = $(this).attr('value');
+                        $.post("{   }", {updateid: JSON.stringify(updateid)},
+                            function (callback) {
+                            });
+                        swal("更新!", "资产更新成功", "success");
+                    });
+                $("a[name='editidcinfo']").click(
+                    function () {
+                        //alert("hello");
+                        console.log("hello!");
+                        $("#updatemyModal").modal('show');
+                        var id = $(this).attr('value');
+                        var idcname = document.getElementById("editable").rows[id].cells[1].innerText;
+                        var idc_flag = document.getElementById("editable").rows[id].cells[2].innerText;
+                        var tel_ip = document.getElementById("editable").rows[id].cells[3].innerText;
+                        var uni_ip = document.getElementById("editable").rows[id].cells[4].innerText;
+                        var mob_ip = document.getElementById("editable").rows[id].cells[5].innerText;
+                        var dns_ip = document.getElementById("editable").rows[id].cells[6].innerText;
+                        var comment = document.getElementById("editable").rows[id].cells[7].innerText;
+                        var address = document.getElementById("editable").rows[id].cells[8].innerText;
+                        var email = document.getElementById("editable").rows[id].cells[9].innerText;
+                        $('#id').val(id);
+                        $('#idcname').val(idcname);
+                        $('#idc_flag').val(idc_flag);
+                        $('#tel_ip').val(tel_ip);
+                        $('#uni_ip').val(uni_ip);
+                        $('#mob_ip').val(mob_ip);
+                        $('#dns_ip').val(dns_ip);
+                        $('#comment').val(comment);
+                        $('#address').val(address);
+                        $('#email').val(email);
+                        console.log(id);
+                        console.log(name);
+                    }
+                );
+            });
+
+            function save() {
+                //获取模态数据,接受隐藏的ID值。
+                var idcname = $('#idcname').val();
+                $.ajax({
+                    type: 'post',
+                    url: '/idc/idcedit/',
+                    data: {
+                        'id': $('#id').val(),
+                        'idcname':  $('#idcname').val(),
+                        'idc_flag': $('#idc_flag').val(),
+                        'tel_ip': $('#tel_ip').val(),
+                        'uni_ip': $('#uni_ip').val(),
+                        'mob_ip': $('#mob_ip').val(),
+                        'dns_ip': $('#dns_ip').val(),
+                        'comment': $('#comment').val(),
+                        'address': $('#address').val(),
+                        'email': $('#email').val(),
+                    },
+                    success: function (result) {
+                        //location.reload();
+                        console.log(result);
+                    }
+
+                });
+                $("#updatemyModal").modal('hide');
+            };
+
+        </script>
+    {% endblock %}
+{% endblock %}
