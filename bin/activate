@@ -2,6 +2,7 @@
 # you cannot run it directly
 
 deactivate () {
+<<<<<<< HEAD
     unset -f pydoc >/dev/null 2>&1
 
     # reset old environment variables
@@ -13,6 +14,16 @@ deactivate () {
     fi
     if ! [ -z "${_OLD_VIRTUAL_PYTHONHOME+_}" ] ; then
         PYTHONHOME="$_OLD_VIRTUAL_PYTHONHOME"
+=======
+    # reset old environment variables
+    if [ -n "${_OLD_VIRTUAL_PATH:-}" ] ; then
+        PATH="${_OLD_VIRTUAL_PATH:-}"
+        export PATH
+        unset _OLD_VIRTUAL_PATH
+    fi
+    if [ -n "${_OLD_VIRTUAL_PYTHONHOME:-}" ] ; then
+        PYTHONHOME="${_OLD_VIRTUAL_PYTHONHOME:-}"
+>>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
         export PYTHONHOME
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
@@ -20,18 +31,31 @@ deactivate () {
     # This should detect bash and zsh, which have a hash command that must
     # be called to get it to forget past commands.  Without forgetting
     # past commands the $PATH changes we made may not be respected
+<<<<<<< HEAD
     if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
         hash -r 2>/dev/null
     fi
 
     if ! [ -z "${_OLD_VIRTUAL_PS1+_}" ] ; then
         PS1="$_OLD_VIRTUAL_PS1"
+=======
+    if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+        hash -r
+    fi
+
+    if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
+        PS1="${_OLD_VIRTUAL_PS1:-}"
+>>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
         export PS1
         unset _OLD_VIRTUAL_PS1
     fi
 
     unset VIRTUAL_ENV
+<<<<<<< HEAD
     if [ ! "${1-}" = "nondestructive" ] ; then
+=======
+    if [ ! "$1" = "nondestructive" ] ; then
+>>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
     # Self destruct!
         unset -f deactivate
     fi
@@ -48,6 +72,7 @@ PATH="$VIRTUAL_ENV/bin:$PATH"
 export PATH
 
 # unset PYTHONHOME if set
+<<<<<<< HEAD
 if ! [ -z "${PYTHONHOME+_}" ] ; then
     _OLD_VIRTUAL_PYTHONHOME="$PYTHONHOME"
     unset PYTHONHOME
@@ -59,10 +84,32 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT-}" ] ; then
         PS1="$PS1"
     else
         PS1="(`basename \"$VIRTUAL_ENV\"`) $PS1"
+=======
+# this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
+# could use `if (set -u; : $PYTHONHOME) ;` in bash
+if [ -n "${PYTHONHOME:-}" ] ; then
+    _OLD_VIRTUAL_PYTHONHOME="${PYTHONHOME:-}"
+    unset PYTHONHOME
+fi
+
+if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
+    _OLD_VIRTUAL_PS1="${PS1:-}"
+    if [ "x(ME_paltform) " != x ] ; then
+	PS1="(ME_paltform) ${PS1:-}"
+    else
+    if [ "`basename \"$VIRTUAL_ENV\"`" = "__" ] ; then
+        # special case for Aspen magic directories
+        # see http://www.zetadev.com/software/aspen/
+        PS1="[`basename \`dirname \"$VIRTUAL_ENV\"\``] $PS1"
+    else
+        PS1="(`basename \"$VIRTUAL_ENV\"`)$PS1"
+    fi
+>>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
     fi
     export PS1
 fi
 
+<<<<<<< HEAD
 # Make sure to unalias pydoc if it's already there
 alias pydoc 2>/dev/null >/dev/null && unalias pydoc
 
@@ -75,4 +122,11 @@ pydoc () {
 # past commands the $PATH changes we made may not be respected
 if [ -n "${BASH-}" ] || [ -n "${ZSH_VERSION-}" ] ; then
     hash -r 2>/dev/null
+=======
+# This should detect bash and zsh, which have a hash command that must
+# be called to get it to forget past commands.  Without forgetting
+# past commands the $PATH changes we made may not be respected
+if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
+    hash -r
+>>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
 fi
