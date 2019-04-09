@@ -1,7 +1,2 @@
-<<<<<<< HEAD
-django-bootstrap3==10.0.1
-
-=======
 django-bootstrap3==11.0.0
 Django==2.1.6
->>>>>>> 3fee04bf156c6c04cb51e0d2db59d78b5b642476
