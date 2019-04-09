@@ -3,11 +3,11 @@
 from django.contrib.auth.decorators import login_required
 from idc import models
 from idc.forms import IdcForm
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from idc.models import IDC
-
+import json
 
 def idcdetail(request, func):
     if request.method == 'GET':
@@ -28,11 +28,7 @@ def index(request):
 
 # 展示机房信息
 def idcinfo(request):
-    print("idc info'")
     idc_info = models.IDC.objects.all()
-    for i in idc_info:
-        print(i.name)
-    print(idc_info)
     return render(request, 'idc/idc_info.html', locals())
 
 
@@ -41,6 +37,7 @@ def idcadd(request):
     form = IdcForm()
     if request.method == "POST":
         form = IdcForm(request.POST)
+        print(form)
         if form.is_valid():
             # form_data = form.cleaned_data
             # print(form_data)
@@ -62,18 +59,20 @@ def idcedit(request):
 
 # 机房信息编辑
 def idcinfo_edit(request):
-    id = request.POST.get('id')
-    idc_info = IDC.objects.get(id=int(id))
+    id = int(request.POST.get('id'))
+    idc_info = IDC.objects.get(id=id)
     print(idc_info)
     if request.method == 'POST':
-        print("idc_edit")
-        print("id is %s" % id)
         form = IdcForm(request.POST,instance=idc_info)
+        print(form)
         if form.is_valid():
             print('post success')
-            form.save()
-            return HttpResponseRedirect('idcinfo/')
-    else:
-        form = IdcForm()
+            try:
+                form.save()
+                return HttpResponse('ok')
+                #return render(request,'idc/idc_info.html',locals())
+            except:
+                return HttpResponse('no')
+        else:
+            return HttpResponse('no')
 
-    return render(request,'idc/idc_info.html',locals())

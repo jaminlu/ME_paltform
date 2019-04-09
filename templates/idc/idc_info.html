@@ -83,7 +83,7 @@
                         <td class="text-center">{{ idc.tel_ip }}</td>
                         <td class="text-center">{{ idc.mob_ip }}</td>
                         <td class="text-center">{{ idc.uni_ip }}</td>
-                        <td class="text-center">{{ idc.dns }}</td>
+                        <td class="text-center">{{ idc.dns_ip }}</td>
                         <td class="text-center">{{ idc.comment }}</td>
                         <td class="text-center">{{ idc.address }}</td>
                         <td class="text-center">{{ idc.email }}</td>
@@ -103,12 +103,12 @@
                                         </div>
                                         <div class="modal-body" style="height:400px;">
                                             <form>
+                                                <!-- 定义一个隐藏的input,传入id值-->
+                                                <input type="hidden" id="id" name="id" value=''>
                                                 <div class="form-inline row">
-                                                    <label for="idcname">机房名字</label>
-                                                    <!-- 定义一个隐藏的input,传入id值-->
-                                                    <input type="hidden" id="id" name="id" value=''>
+                                                    <label for="name">机房名字</label>
                                                     <input type="text" class="form-control" style="width: 350px"
-                                                           id="idcname" placeholder="机房名字，比如洛阳tw06三线">
+                                                           id="name" placeholder="机房名字，比如洛阳tw06三线">
                                                 </div>
                                                 <div class="form-inline row">
                                                     <label for="idc_flag">机房标识</label>
@@ -225,7 +225,7 @@
                         console.log("hello!");
                         $("#updatemyModal").modal('show');
                         var id = $(this).attr('value');
-                        var idcname = document.getElementById("editable").rows[id].cells[1].innerText;
+                        var name = document.getElementById("editable").rows[id].cells[1].innerText;
                         var idc_flag = document.getElementById("editable").rows[id].cells[2].innerText;
                         var tel_ip = document.getElementById("editable").rows[id].cells[3].innerText;
                         var uni_ip = document.getElementById("editable").rows[id].cells[4].innerText;
@@ -235,7 +235,7 @@
                         var address = document.getElementById("editable").rows[id].cells[8].innerText;
                         var email = document.getElementById("editable").rows[id].cells[9].innerText;
                         $('#id').val(id);
-                        $('#idcname').val(idcname);
+                        $('#name').val(name);
                         $('#idc_flag').val(idc_flag);
                         $('#tel_ip').val(tel_ip);
                         $('#uni_ip').val(uni_ip);
@@ -258,7 +258,7 @@
                     url: '/idc/idcedit/',
                     data: {
                         'id': $('#id').val(),
-                        'idcname':  $('#idcname').val(),
+                        'name':  $('#name').val(),
                         'idc_flag': $('#idc_flag').val(),
                         'tel_ip': $('#tel_ip').val(),
                         'uni_ip': $('#uni_ip').val(),
