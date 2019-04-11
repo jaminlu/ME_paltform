@@ -1,7 +1,7 @@
-.gitignore 
-db.sqlite3
-.git/
-venv/
-lib/
-bin/
-bak/
+#.gitignore 
+#db.sqlite3
+#.git/
+#venv/
+#lib/
+#bin/
+#bak/
