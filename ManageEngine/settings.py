@@ -25,7 +25,7 @@ print(BASE_DIR)
 SECRET_KEY = '8uu#rieh$jrhga0nq44v9mn_5)@efpn^8=%fw*n=8lv*h@0_g$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'idc',
     'saltstack',
     'assets',
+    'celeryapp',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -149,4 +151,20 @@ SALT_PORT='8000'
 username='kbson'
 password='kbson'
 
+
+#####celery config  ######
+CELERY_BROKER_URL='amqp://rabbitmq:rabbitmq@10.10.61.55:5672/'
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_PERSISTENT=False
+CELERY_RESULT_EXPIRE = 3600
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+BROKER_TRANSPORT_OPTIONS={'visibility_timeout':43200}
+CELERY_BROKER_TRANSPORT_OPTIONS ={'visibility_time': 28800}
+CELERY_TIMEZONE = "Asia/Shanghai"
+CELERY_TASK_TIME_LIMIT= 5*60
+BROKER_HEARTBEAT = 24 * 60 * 60
+CELERY_ENABLE_UTC = True
+CELERY_TASK_DEFAULT_QUEUE = 'default'
+CELERY_TASK_DEFAULT_EXCHANGE = 'default'
+CELERY_TASK_DEFAULT_ROUTING_KEY = 'default'
 

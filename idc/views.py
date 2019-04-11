@@ -61,16 +61,13 @@ def idcedit(request):
 def idcinfo_edit(request):
     id = int(request.POST.get('id'))
     idc_info = IDC.objects.get(id=id)
-    print(idc_info)
     if request.method == 'POST':
         form = IdcForm(request.POST,instance=idc_info)
-        print(form)
         if form.is_valid():
             print('post success')
             try:
                 form.save()
                 return HttpResponse('ok')
-                #return render(request,'idc/idc_info.html',locals())
             except:
                 return HttpResponse('no')
         else:
