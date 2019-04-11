@@ -1,7 +1,8 @@
-#.gitignore 
-#db.sqlite3
-#.git/
-#venv/
-#lib/
-#bin/
-#bak/
+.gitignore 
+.Python
+db.sqlite3
+.git/
+venv/
+lib/
+bin/
+bak/
