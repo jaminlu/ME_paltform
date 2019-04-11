@@ -7,3 +7,5 @@ venv/
 lib/
 bin/
 bak/
+include/
+.idea/
