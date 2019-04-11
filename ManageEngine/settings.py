@@ -25,9 +25,9 @@ print(BASE_DIR)
 SECRET_KEY = '8uu#rieh$jrhga0nq44v9mn_5)@efpn^8=%fw*n=8lv*h@0_g$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["10.10.32.102","127.0.0.1"]
 
 
 # Application definition
@@ -97,7 +97,7 @@ DATABASES = {
         'NAME': 'manageEngine',
         'USER':'root',
         'PASSWORD': '123456',
-        'HOST': 'localhost',
+        'HOST': '10.10.32.102',
         'POST': '3306',
     }
 

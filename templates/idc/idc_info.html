@@ -223,7 +223,6 @@
                 $("a[name='editidcinfo']").click(
                     function () {
                         //alert("hello");
-                        console.log("hello!");
                         $("#updatemyModal").modal('show');
                         var id = $(this).attr('value');
                         var name = document.getElementById("editable").rows[id].cells[1].innerText;
@@ -245,8 +244,6 @@
                         $('#comment').val(comment);
                         $('#address').val(address);
                         $('#email').val(email);
-                        console.log(id);
-                        console.log(name);
                     }
                 );
             });
@@ -270,8 +267,9 @@
                         'email': $('#email').val(),
                     },
                     success: function (result) {
-                        //location.reload();
-                        console.log(result);
+                        location.reload();
+			//alert(result);
+                        //console.log(result);
                     }
 
                 });

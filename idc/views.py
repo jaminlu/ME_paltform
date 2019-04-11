@@ -64,12 +64,12 @@ def idcinfo_edit(request):
     if request.method == 'POST':
         form = IdcForm(request.POST,instance=idc_info)
         if form.is_valid():
-            print('post success')
             try:
                 form.save()
-                return HttpResponse('ok')
+                return HttpResponse('yes')
             except:
                 return HttpResponse('no')
         else:
             return HttpResponse('no')
+    #return render(request,'idc/idc_info.html',locals())
 

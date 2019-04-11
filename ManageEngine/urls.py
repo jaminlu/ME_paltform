@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf.urls import url, include
 
 from users.views import login_view, index, logout, register, profile, changepwd, profile_update
-from .views import page_not_found
+#from .views import page_not_found
 from django.conf.urls import handler404
 import idc
 
@@ -39,4 +39,4 @@ urlpatterns = [
     path('assets/', include('assets.urls')),
 
 ]
-handler404 = page_not_found
+#handler404 = page_not_found
