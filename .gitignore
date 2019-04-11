@@ -1,6 +1,7 @@
 .gitignore 
 .Python
 db.sqlite3
+lib64
 .git/
 venv/
 lib/
