@@ -1,7 +1,6 @@
 #-*- coding: utf-8 -*-
-import json
 from ManageEngine.config import API_ADDR
-from .auth import auth_requests
+from utils.auth import auth_requests
 
 class GraphAPI(object):
     def __init__(self, id, title, hosts, counters, screen_id, timespan=3600, graph_type='h', method='',position=0):

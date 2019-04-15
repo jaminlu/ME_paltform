@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
-import sys
 from ManageEngine import settings
 
-from saltstack import saltapi
+from utils import saltapi
 from idc.models import Assets, IDC
 import datetime
 
@@ -26,7 +24,7 @@ class AssetsInfo(object):
         self.name = 'test107vm7'
         print(self.name)
         self.salt = saltapi.SaltApi(settings.SALT_HOST, settings.SALT_PORT, username=settings.username,
-                            password=settings.password)
+                                    password=settings.password)
         self.grains = self.salt.salt_command(self.name, 'grains.items')[self.name]
 
     """
