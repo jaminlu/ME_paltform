@@ -24,7 +24,8 @@ def saltapi(idc, target):
     :param target: 
     :return: 
     """
-    cmd = """ python %s/scripts/gather_facts.py "%s" "%s"  """ %(BASE_DIR, idc,target)
+    print(BASE_DIR)
+    cmd = """ python %s/scripts/gather_facts.py "%s" "%s"  """ %(BASE_DIR, idc, target)
     print(cmd)
     os.system(cmd)
     
