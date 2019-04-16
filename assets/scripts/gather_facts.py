@@ -24,7 +24,7 @@ def gather_facts(flag="", tgt="*"):
     # idc_mob_ip = idc.mob_ip
     # idc_uni_ip = idc.uni_ip
     salt = SaltApi(host='10.10.32.102', port='8000', username='kbson', password='kbson')
-    rs = salt.salt_command(tgt, "grains.item")
+    rs = salt.salt_command(tgt, "grains.item","ipv4")
     print(rs)
 
 
